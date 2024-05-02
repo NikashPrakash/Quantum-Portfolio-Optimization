@@ -10,7 +10,8 @@ The novel approach I am working to implement is a QEM method called Uniformly De
 ## 2. Methodology
 ### 2.1 Quadratic Formulation with Constriants
 A portfolio is defined as the set of investments $x_i$ (measured as a fraction of the budget $B$) allocated for each $i$th asset of the market. 
-The formulation of the Portfolio Optimization (PO) problem constrained under a budget is the quandratic objective function: \[\begin{equation}\begin{aligned}\underset{x}{\max }{\mathscr {L}}(x): \underset{x}{\max }(\mu ^{\text {T}} x - qx^{\text {T}}\Sigma x),\\ \text {s.t.} \quad \sum ^{N}_{i=1}x_i=1 \end{aligned}\end{equation}\]
+The formulation of the Portfolio Optimization (PO) problem constrained under a budget is the quandratic objective function:
+$$\begin{equation}\begin{aligned}\underset{x}{\max }{\mathscr {L}}(x): \underset{x}{\max }(\mu ^{\text {T}} x - qx^{\text {T}}\Sigma x),\\ \text {s.t.} \quad \sum ^{N}_{i=1}x_i=1 \end{aligned}\end{equation}$$
 Now considering $x$ is a possible solution to a problem with continous variables, the product $x_iB$ will be a multiple of $P_i$ - the closing price of the *i*th asset. To make to more computational feasable a subset of the problems where $x_iB$ is a integer multiple of $P_i$. A transformation of the variables $P,\ \mu,\ \Sigma,\text{ and } x$ will be necessary for the integer formulation:
 $$\begin{gathered} n = xB \\ P' = P/B \\ \mu'= P \circ \mu  && \text{where} \circ \text{is the Hadamard product} \\ \Sigma' = (P' \circ \Sigma)^T \circ P' \end{gathered}$$ 
 $$\begin{equation}\begin{gathered} \mathop {\max }\limits_{n} {\mathcal{L}}(n):\mathop {\max }\limits_{n} (\mu ^{{\prime {\text{T}}}} n - qn^{{\text{T}}} \Sigma ^{\prime } n), \\   {\text{s}}{\text{.t}}{\text{.}}\quad P^{{\prime {\text{T}}}} n = 1 \end{gathered}\end{equation}$$
