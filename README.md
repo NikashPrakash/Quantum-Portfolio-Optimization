@@ -36,7 +36,7 @@ To get the number of binary digits to have we first get the maximum number of in
 We then get binarized target variables $b_i = [b_{1,0},\dots,b_{1,d_{1}},\dots,b_{N,0},\dots,b_{N,d_{N}}] \in R^{dim(b)}$, where $dim(b) = \sum\limits^N_{i=1}(d_i+1)$
 
 Which helps define encoding matrix $C \in R^{N \times dim(b)}$, where N is the number of assets:
-``` math
+```math
 C = \begin{pmatrix} 2^0 & \cdots & 2^{d_{1}} & 0 & \cdots & 0 & \cdots & 0 & \cdots & 0 \\ 0 & \cdots & 0 & 2^0 & \cdots & 2^{d_{2}} & \cdots & 0 & \cdots & 0\\ \vdots & \ddots & \vdots & \vdots & \ddots & \vdots & \ddots & \vdots& \ddots & \vdots \\ 0 & \cdots & 0 & 0 & \cdots & 0 & \cdots & 2^0 & \cdots & 2^{d_{N}} \end{pmatrix}
 ```
 Which is used to further transform variables to be compatible with binary variables:
@@ -57,7 +57,7 @@ Ex:
 We then get binarized target variables $b_i = [b_{1,0},\dots,b_{1,d_{1}},\dots,b_{N,0},\dots,b_{N,d_{N}}] \in R^{dim(b)}$, where $dim(b) = 7*N$
 
 Which helps define encoding matrix $C \in R^{N \times dim(b)}$, where N is the number of assets:
-``` math
+```math
 C = \begin{pmatrix} 2^0 & \cdots & 2^{d_{1}} & 0 & \cdots & 0 & \cdots & 0 & \cdots & 0 \\ 0 & \cdots & 0 & 2^0 & \cdots & 2^{d_{2}} & \cdots & 0 & \cdots & 0\\ \vdots & \ddots & \vdots & \vdots & \ddots & \vdots & \ddots & \vdots& \ddots & \vdots \\ 0 & \cdots & 0 & 0 & \cdots & 0 & \cdots & 2^0 & \cdots & 2^{d_{N}} \end{pmatrix}
 ```
 
@@ -69,19 +69,21 @@ To convert it to an unconstrained problem we transform the constrain into a pena
 
 ### 2.4 Quantum Ising Hamiltonian 
 To convert it into an Ising, related literature suggests expanding the components for ease of transformation:
-``` math
+```math
 \begin{equation}\mathcal{L}(b):\sum\limits_{i} {\mu _{i}^{\prime } b_{i} }  - q\sum\limits_{{i,j}} {\Sigma _{{i,j}}^{\prime } } b_{i} b_{j}  - \lambda \left( {\sum\limits_{i} {P_{i}^{\prime } b_{i}  - 1} } \right)^{2}, \end{equation}
 ```
 where $\mu'_i,\Sigma'_{i,j}, P'_i$ are components of $\mu_i'', \Sigma_i'', P''_i$, and $i \in [1,dim(b)].\\$ 
-Now to convert into an Ising, spin variables $s_i$ which have values {-1,1}, are used in the transform $b_i \rightarrow \dfrac{1+s_i}{2}$. This results in a re-arrangement of the coefficients amd gives:
+Now to convert into an Ising, spin variables $s_i$ which have values {-1,1}, are used in the transform $b_i \rightarrow \dfrac{1+s_i}{2}$. This results in a re-arrangement of the coefficients and gives:
 ```math
-\begin{equation}\begin{gather}\underset{s}{\min}\ {\mathscr {L}}(s): \underset{s}{\min }\left( \sum _{i}h_{i}s_{i}+ \sum _{i,j} J_{i,j}s_{i}s_{j}+\lambda (\sum _{i}(\pi _{i}s_{i}-\beta )^{2}\right)\\ \text {s.t.} \quad s_{i,j}\in \{-1,1\} \quad \forall i \nonumber,\end{gather}\end{equation}
+\begin{equation}\begin{gathered}\underset{s}{\min}\ {\mathscr {L}}(s): \underset{s}{\min }\left( \sum _{i}h_{i}s_{i}+ \sum _{i,j} J_{i,j}s_{i}s_{j}+\lambda (\sum _{i}(\pi _{i}s_{i}-\beta )^{2}\right)\\ \text {s.t.} \quad s_{i,j}\in \{-1,1\} \quad \forall i \nonumber,\end{gathered}\end{equation}
 ```
 $J_{i,j}$ represents the coupling term between two spin variables.
 We know that the eigenvalues of the Pauli Z operators are $\pm1$, which means it is suitable to represent the classical spin variables $s_i$. The two-body interaction can be represented through the tensor product of two Pauli Z Operators - $Z_i \otimes Z_{j}$..
 
 The Qauntum Ising Hamiltonian:
-$$\begin{equation}\begin{gathered} \sum _{i}h_{i}Z_{i}+ \sum _{i,j} J_{i,j}Z_{i} \otimes Z_{j}+\lambda \sum _{i}(\pi _{i}Z_{i}-\beta )^{2}.\end{gathered}\end{equation}$$
+```math
+\begin{equation}\begin{gathered} \sum _{i}h_{i}Z_{i}+ \sum _{i,j} J_{i,j}Z_{i} \otimes Z_{j}+\lambda \sum _{i}(\pi _{i}Z_{i}-\beta )^{2}.\end{gathered}\end{equation}
+```
 
 ### 2.5 VQE method
 
